@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+  <h1>Subarray Divider</h1>
+  <button onclick="run()">Test Divide</button>
 
+  <script type="text/javascript">
+    // Paste the JavaScript code from above here
+    const arr = [1, 2, 3, 4, 1, 0, 2, 2];
+
+    const divide = (arr, n) => {
+      let result = [];
+      let subArray = [];
+      let currentSum = 0;
+
+      for (let i = 0; i < arr.length; i++) {
+        if (currentSum + arr[i] > n) {
+          result.push(subArray);
+          subArray = [];
+          currentSum = 0;
+        }
+        subArray.push(arr[i]);
+        currentSum += arr[i];
+      }
+
+      if (subArray.length > 0) {
+        result.push(subArray);
+      }
+
+      return result;
+    };
+
+    function run() {
+      const n = prompt("Enter n: ");
+      alert(JSON.stringify(divide(arr, parseInt(n))));
+    }
+  </script>
 </body>
-
 </html>
